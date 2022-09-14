@@ -1,21 +1,24 @@
 [user]
-	name = Nir Darmoni
-	email = NDarmoni@gmail.com
+        name = Nir Darmoni
+        email = NDarmoni@gmail.com
 [core]
-	editor = vim
-	pager = less -x4
-	autocrlf = input
-[push]
-	default = simple
+        editor = vim
+        pager = less -x4
+        autocrlf = input
+
 [pull]
-	default = rebase
-[filter "indent"]
-	clean = indent
-	smudge = cat
+        default = rebase
+
+
+[push]
+        default = simple
+        filter = "indent"
+        clean = indent
+        smudge = cat
 [filter "dater"]
     #smudge = cat
     smudge = expand_date %f
-	clean = perl -pe \"s/\\\\\\$Date[^\\\\\\$]*\\\\\\$/\\\\\\$Date\\\\\\$/\"
+        clean = perl -pe \"s/\\\\\\$Date[^\\\\\\$]*\\\\\\$/\\\\\\$Date\\\\\\$/\"
 [status]
         submodulesummary = 1
 [tag]
@@ -24,12 +27,12 @@
     pretty = %at %ar %h %an\t%s
 
 [alias]
-	unstage = reset HEAD --
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
-	visual = !gitg
+        unstage = reset HEAD --
+        co = checkout
+        br = branch
+        ci = commit
+        st = status
+        visual = !gitg
     last = log --pretty=full -1 HEAD
     sst = submodule status --recursive
 # From https://gist.github.com/robmiller/6018582
@@ -100,13 +103,13 @@ supdate = submodule update --remote --merge
 spull = !git pull && git submodule sync --recursive && git submodule update --init --recursive
 [diff]
     submodule = log
-	tool = meld
+        tool = meld
 [rerere]
-	enabled = true
-	autoupdate = true
+        enabled = true
+        autoupdate = true
 [submodule]
-	recurse = true
+        recurse = true
 [color]
-	ui = auto
+        ui = auto
 [help]
 	autocorrect = 1
