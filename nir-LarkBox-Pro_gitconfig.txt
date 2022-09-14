@@ -1,0 +1,56 @@
+[user]
+        name = Nir Darmoni
+        email = NDarmoni@gmail.com
+[core]
+        editor = vim
+        pager = less -x4
+        autocrlf = input
+[push]
+        default = simple
+[filter "indent"]
+        clean = indent
+        smudge = cat
+[filter "dater"]
+    #smudge = cat
+    smudge = expand_date %f
+        clean = perl -pe \"s/\\\\\\$Date[^\\\\\\$]*\\\\\\$/\\\\\\$Date\\\\\\$/\"
+[status]
+        submodulesummary = 1
+[tag]
+    sort = -creatordate
+[format]
+    pretty = %at %ar %h %an\t%s
+
+[alias]
+        unstage = reset HEAD --
+        co = checkout
+        br = branch
+        ci = commit
+        st = status
+        visual = !gitg
+    last = log --pretty=full -1 HEAD
+    sst = submodule status --recursive
+# From https://gist.github.com/robmiller/6018582
+# Working with branches
+#
+# Get the current branch name (not so useful in itself, but used in
+# other aliases)
+#branch-name = "!git rev-parse --abbrev-ref HEAD"
+branch-name = "!git symbolic-ref HEAD --short"
+# Push the current branch to the remote "origin", and set it to track
+# the upstream branch
+publish = "!git push -u origin $(git branch-name)"
+# Delete the remote version of the current branch
+unpublish = "!git push origin :$(git branch-name)"
+# Delete a branch and recreate it from main — useful if you have, say,
+# a development branch and a main branch and they could conceivably go
+# out of sync
+recreate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout main && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
+# Fire up your difftool (e.g. Kaleidescope) with all the changes that
+# are on the current branch.
+code-review = difftool origin/main...
+# Given a merge commit, find the span of commits that exist(ed) on that
+# branch. Again, not so useful in itself, but used by other aliases.
+
+[color]
+	ui = auto
