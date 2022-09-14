@@ -5,11 +5,11 @@
 	editor = vim
 	pager = less -x4
 	autocrlf = input
-[pull]
-    default = rebase
 [push]
 	default = simple
-	filter = "indent"
+[pull]
+	default = rebase
+[filter "indent"]
 	clean = indent
 	smudge = cat
 [filter "dater"]
@@ -22,6 +22,7 @@
     sort = -creatordate
 [format]
     pretty = %at %ar %h %an\t%s
+
 [alias]
 	unstage = reset HEAD --
 	co = checkout
